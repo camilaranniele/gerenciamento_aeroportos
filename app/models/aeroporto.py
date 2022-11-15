@@ -1,5 +1,6 @@
 from config import db
 
+
 class AeroportoDataBase(db.Model):
     __tablename__ = "Aeroporto"
     id_aeroporto = db.Column(db.Integer, primary_key=True)
