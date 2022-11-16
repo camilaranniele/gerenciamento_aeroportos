@@ -1,6 +1,6 @@
 from flask_restful import Api
 
-from config import app, db
+from backend.config import app, db
 from app.controllers.aeroporto_controller import Aeroporto, ListaAeroporto
 
 
