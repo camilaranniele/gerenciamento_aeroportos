@@ -1,7 +1,7 @@
 from marshmallow import fields
 
 from app.models.aeroporto import AeroportoDataBase
-from backend.config import marshmallow, db
+from config import marshmallow, db
 
 
 class AeroportoDataBaseSchema(marshmallow.SQLAlchemyAutoSchema):

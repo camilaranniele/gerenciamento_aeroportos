@@ -2,7 +2,7 @@ from flask_restful import reqparse, Api, Resource, fields
 
 from app.models.aeroporto import AeroportoDataBase
 from app.models.aeroporto_schema import AeroportoDataBaseSchema
-from backend.config import db
+from config import db
 
 parser = reqparse.RequestParser()
 parser.add_argument('id_aeroporto', type=int,

@@ -1,4 +1,4 @@
-from backend.config import db
+from config import db
 
 
 class AeroportoDataBase(db.Model):
