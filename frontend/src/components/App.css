@@ -1,0 +1,9 @@
+.airport-filter {
+  display: flex;
+  flex-direction: row;
+  gap: 1em;
+}
+
+.add-airport {
+  padding-top: 1em;
+}
