@@ -6,8 +6,8 @@ from app.controllers.aeroporto_controller import Aeroporto, ListaAeroporto
 
 api = Api(app)
 
-api.add_resource(ListaAeroporto, '/aeroporto')
-api.add_resource(Aeroporto, '/aeroporto/<codigo_iata>')
+api.add_resource(ListaAeroporto, '/aeroportos')
+api.add_resource(Aeroporto, '/aeroportos/<codigo_iata>')
 
 if __name__ == '__main__':
     with app.app_context():

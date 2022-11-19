@@ -4,8 +4,8 @@ from config import db
 class AeroportoDataBase(db.Model):
     __tablename__ = "Aeroporto"
     id_aeroporto = db.Column(db.Integer, primary_key=True)
-    nome_aeroporto = db.Column(db.String(256), unique=True, nullable=False)
-    codigo_iata = db.Column(db.String(3), unique=True, nullable=False)
+    nome_aeroporto = db.Column(db.String(256), nullable=False)
+    codigo_iata = db.Column(db.String(3), nullable=False)
     cidade = db.Column(db.String(256), nullable=False)
     codigo_pais_iso = db.Column(db.String(2), nullable=False)
     latitude = db.Column(db.Numeric(precision=10, scale=2), nullable=False)
