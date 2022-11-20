@@ -35,12 +35,12 @@ class Aeroporto(Resource):
     def put(self, codigo_iata):
         aeroporto_json = parser.parse_args()
         aeroporto = AeroportoDataBase.query.filter_by(
-            codigo_iata=codigo_iata).first()
+            codigo_iata=codigo_iata.upper()).first()
 
         aeroporto.nome_aeroporto = aeroporto_json.nome_aeroporto
-        aeroporto.codigo_iata = aeroporto_json.codigo_iata
+        aeroporto.codigo_iata = aeroporto_json.codigo_iata.upper()
         aeroporto.cidade = aeroporto_json.cidade
-        aeroporto.codigo_pais_iso = aeroporto_json.codigo_pais_iso
+        aeroporto.codigo_pais_iso = aeroporto_json.codigo_pais_iso.upper()
         aeroporto.latitude = aeroporto_json.latitude
         aeroporto.longitude = aeroporto_json.longitude
         aeroporto.altitude = aeroporto_json.altitude
@@ -67,8 +67,8 @@ class ListaAeroporto(Resource):
         aeroporto_schema = AeroportoDataBaseSchema()
         aeroporto = aeroporto_schema.load(aeroporto_json)
         aeroportoDataBase = AeroportoDataBase(
-            aeroporto["nome_aeroporto"], aeroporto["codigo_iata"],
-            aeroporto["cidade"], aeroporto["codigo_pais_iso"],
+            aeroporto["nome_aeroporto"], aeroporto["codigo_iata"].upper(),
+            aeroporto["cidade"], aeroporto["codigo_pais_iso"].upper(),
             aeroporto["latitude"], aeroporto["longitude"], aeroporto["altitude"]
         )
         resp = aeroporto_schema.dump(aeroportoDataBase.create())
