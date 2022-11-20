@@ -1,16 +1,19 @@
 import { useState } from "react";
 import Collapse from "@mui/material/Collapse";
-import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
+import EditIcon from "@mui/icons-material/Edit";
+import DeleteIcon from "@mui/icons-material/Delete";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import TableRow from "@mui/material/TableRow";
 import TableCell from "@mui/material/TableCell";
 import AirportDetails from "../AirportDetails";
+import AirportModal from "../AirportModal";
 
 export default function Row(props) {
-  const [open, setOpen] = useState(false);
-  const { airport, deleteAirportByIATA } = props;
+  const [openDetails, setOpenDetails] = useState(false);
+  const [openModal, setOpenModal] = useState(false);
+  const { airport, deleteAirportByIATA, editAirport } = props;
 
   function handleDelete() {
     deleteAirportByIATA(airport.codigo_iata);
@@ -18,6 +21,13 @@ export default function Row(props) {
 
   return (
     <>
+      <AirportModal
+        title="Editar aeroporto"
+        airport={airport}
+        open={openModal}
+        handleClose={() => setOpenModal(false)}
+        submit={editAirport}
+      />
       <TableRow
         sx={{
           "&:last-child td, &:last-child th": { border: 0 },
@@ -27,9 +37,9 @@ export default function Row(props) {
           <IconButton
             aria-label="expand row"
             size="small"
-            onClick={() => setOpen(!open)}
+            onClick={() => setOpenDetails(!openDetails)}
           >
-            {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
+            {openDetails ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
           </IconButton>
         </TableCell>
         <TableCell component="th" scope="row">
@@ -38,12 +48,17 @@ export default function Row(props) {
         <TableCell align="right">{airport.codigo_iata}</TableCell>
         <TableCell align="right">{airport.cidade}</TableCell>
         <TableCell align="right">
-          <Button onClick={handleDelete}>delete</Button>
+          <IconButton onClick={() => setOpenModal(true)}>
+            <EditIcon />
+          </IconButton>
+          <IconButton onClick={handleDelete}>
+            <DeleteIcon />
+          </IconButton>
         </TableCell>
       </TableRow>
       <TableRow>
         <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
-          <Collapse in={open} timeout="auto" unmountOnExit>
+          <Collapse in={openDetails} timeout="auto" unmountOnExit>
             <AirportDetails airport={airport} />
           </Collapse>
         </TableCell>

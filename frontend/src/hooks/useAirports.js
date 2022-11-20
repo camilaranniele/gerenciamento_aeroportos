@@ -21,9 +21,17 @@ export default function useAirports() {
     setLoading(false);
   }
 
-  async function createAirport() {
+  async function createAirport(airport) {
     setLoading(true);
-    await axios.post(`${baseURL}/aeroportos`);
+    await axios.post(`${baseURL}/aeroportos`, airport);
+    await listAirports();
+    setLoading(false);
+  }
+
+  async function editAirport(airport) {
+    setLoading(true);
+    await axios.put(`${baseURL}/aeroportos/${airport.codigo_iata}`, airport);
+    await listAirports();
     setLoading(false);
   }
 
@@ -37,7 +45,7 @@ export default function useAirports() {
   async function deleteAirportByIATA(codigo_iata) {
     setLoading(true);
     await axios.delete(`${baseURL}/aeroportos/${codigo_iata}`);
-    listAirports();
+    await listAirports();
     setLoading(false);
   }
 
@@ -47,6 +55,7 @@ export default function useAirports() {
     loading,
     listAirports,
     createAirport,
+    editAirport,
     getAirportByIATA,
     deleteAirportByIATA,
   };

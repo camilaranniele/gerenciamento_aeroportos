@@ -2,8 +2,10 @@ import "./App.css";
 import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
 import Button from "@mui/material/Button";
+import Container from "@mui/material/Container";
 import Table from "./AirportTable";
 import Loading from "./Loading";
+import AirportModal from "./AirportModal";
 import useAirports from "../hooks/useAirports";
 import { useState } from "react";
 
@@ -12,11 +14,15 @@ function App() {
     airports,
     airportsIATA,
     loading,
+    createAirport,
+    editAirport,
     getAirportByIATA,
     listAirports,
     deleteAirportByIATA,
   } = useAirports();
   const [selectedIATA, setSlectedIATA] = useState("");
+  const [open, setOpen] = useState(false);
+  const handleModalOpen = () => setOpen(true);
 
   function handleFilter() {
     if (selectedIATA) {
@@ -29,9 +35,16 @@ function App() {
   function handleSelectedIATA(event, value) {
     setSlectedIATA(value);
   }
+
   return (
-    <>
+    <Container maxWidth="lg">
       <Loading open={loading} />
+      <AirportModal
+        title="Criar aeroporto"
+        open={open}
+        handleClose={() => setOpen(false)}
+        submit={createAirport}
+      />
       <header>
         <h1>Aeroportos</h1>
       </header>
@@ -51,16 +64,19 @@ function App() {
           </Button>
         </div>
         <div className="add-airport">
-          <Button variant="contained">Adicionar novo aeroporto</Button>
+          <Button variant="contained" onClick={handleModalOpen}>
+            Adicionar novo aeroporto
+          </Button>
         </div>
         <div>
           <Table
             airports={airports}
+            editAirport={editAirport}
             deleteAirportByIATA={deleteAirportByIATA}
           />
         </div>
       </main>
-    </>
+    </Container>
   );
 }
 

@@ -11,12 +11,12 @@ import Row from "./Row";
 
 export default function AirportTable(props) {
   const [page, setPage] = useState(0);
-  const { airports, deleteAirportByIATA } = props;
+  const { airports, deleteAirportByIATA, editAirport } = props;
 
   return (
-    <TableContainer component={Paper}>
+    <TableContainer component={Paper} className="table" elevation={5}>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
-        <TableHead>
+        <TableHead className="table-head">
           <TableRow>
             <TableCell />
             <TableCell>Nome</TableCell>
@@ -27,7 +27,12 @@ export default function AirportTable(props) {
         </TableHead>
         <TableBody>
           {airports.slice(page * 10, page * 10 + 10).map((airport) => (
-            <Row airport={airport} deleteAirportByIATA={deleteAirportByIATA} />
+            <Row
+              key={airport.id_aeroporto}
+              airport={airport}
+              editAirport={editAirport}
+              deleteAirportByIATA={deleteAirportByIATA}
+            />
           ))}
         </TableBody>
         <Footer page={page} setPage={setPage} total={airports.length} />
