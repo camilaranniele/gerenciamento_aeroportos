@@ -1,4 +1,5 @@
 from flask_restful import reqparse, Api, Resource, fields
+from sqlalchemy import asc
 
 from app.models.aeroporto import AeroportoDataBase
 from app.models.aeroporto_schema import AeroportoDataBaseSchema
@@ -56,7 +57,7 @@ class Aeroporto(Resource):
 
 class ListaAeroporto(Resource):
     def get(self):
-        aeroportos = AeroportoDataBase.query.all()
+        aeroportos = AeroportoDataBase.query.order_by(asc(AeroportoDataBase.codigo_iata)).all()
         aeroporto_schema = AeroportoDataBaseSchema(many=True)
         resp = aeroporto_schema.dump(aeroportos)
         return resp, 200
