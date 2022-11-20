@@ -27,7 +27,7 @@ class Aeroporto(Resource):
 
     def delete(self, codigo_iata):
         aeroporto = AeroportoDataBase.query.filter_by(
-            codigo_iata=codigo_iata).first()
+            codigo_iata=codigo_iata.upper()).first()
         db.session.delete(aeroporto)
         db.session.commit()
         return 'Aeroporto deletado', 204
