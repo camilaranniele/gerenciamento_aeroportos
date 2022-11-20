@@ -6,8 +6,8 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import Footer from "./footer";
-import Row from "./row";
+import Footer from "./Footer";
+import Row from "./Row";
 
 export default function AirportTable(props) {
   const [page, setPage] = useState(0);

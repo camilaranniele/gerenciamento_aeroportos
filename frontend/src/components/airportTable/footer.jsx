@@ -1,7 +1,7 @@
 import TableFooter from "@mui/material/TableFooter";
 import TablePagination from "@mui/material/TablePagination";
 import TableRow from "@mui/material/TableRow";
-import Pagination from "./pagination";
+import Pagination from "./Pagination";
 
 export default function Footer(props) {
   const { page, setPage, total } = props;
