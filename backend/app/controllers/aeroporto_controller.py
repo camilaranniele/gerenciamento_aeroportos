@@ -22,7 +22,7 @@ class Aeroporto(Resource):
             codigo_iata=codigo_iata.upper()).first()
         aeroporto_schema = AeroportoDataBaseSchema()
         resp = aeroporto_schema.dump(aeroporto)
-        return {"aeroporto": resp}, 200
+        return  resp, 200
 
     def delete(self, codigo_iata):
         aeroporto = AeroportoDataBase.query.filter_by(
@@ -51,7 +51,7 @@ class Aeroporto(Resource):
             only=['id_aeroporto', 'nome_aeroporto', 'codigo_iata', 'cidade', 'codigo_pais_iso', 'latitude', 'longitude', 'altitude'])
         resp = aeroporto_schema.dump(aeroporto)
 
-        return {"aeroporto": resp}, 200
+        return  resp, 200
 
 
 class ListaAeroporto(Resource):

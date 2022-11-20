@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-export default function () {
+export default function useAirports() {
   const [airports, setAirports] = useState([]);
   const [airportsIATA, setAirportsIATA] = useState([]);
 
