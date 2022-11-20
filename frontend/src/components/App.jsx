@@ -8,8 +8,14 @@ import useAirports from "../hooks/useAirports";
 import { useState } from "react";
 
 function App() {
-  const { airports, airportsIATA, getAirportByIATA, listAirports } =
-    useAirports();
+  const {
+    airports,
+    airportsIATA,
+    loading,
+    getAirportByIATA,
+    listAirports,
+    deleteAirportByIATA,
+  } = useAirports();
   const [selectedIATA, setSlectedIATA] = useState("");
 
   function handleFilter() {
@@ -25,7 +31,7 @@ function App() {
   }
   return (
     <>
-      <Loading open={airports.length === 0} />
+      <Loading open={loading} />
       <header>
         <h1>Aeroportos</h1>
       </header>
@@ -48,7 +54,10 @@ function App() {
           <Button variant="contained">Adicionar novo aeroporto</Button>
         </div>
         <div>
-          <Table airports={airports} />
+          <Table
+            airports={airports}
+            deleteAirportByIATA={deleteAirportByIATA}
+          />
         </div>
       </main>
     </>

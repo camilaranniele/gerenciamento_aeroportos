@@ -11,7 +11,7 @@ import Row from "./Row";
 
 export default function AirportTable(props) {
   const [page, setPage] = useState(0);
-  const { airports } = props;
+  const { airports, deleteAirportByIATA } = props;
 
   return (
     <TableContainer component={Paper}>
@@ -27,7 +27,7 @@ export default function AirportTable(props) {
         </TableHead>
         <TableBody>
           {airports.slice(page * 10, page * 10 + 10).map((airport) => (
-            <Row airport={airport} />
+            <Row airport={airport} deleteAirportByIATA={deleteAirportByIATA} />
           ))}
         </TableBody>
         <Footer page={page} setPage={setPage} total={airports.length} />

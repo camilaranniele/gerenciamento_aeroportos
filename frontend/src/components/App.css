@@ -7,3 +7,12 @@
 .add-airport {
   padding-top: 1em;
 }
+
+.details {
+  display: grid;
+  grid-template-columns: 25% 25% 25% 25%;
+  grid-template-rows: auto;
+  grid-template-areas:
+    "info info info info"
+    "local local local .";
+}
